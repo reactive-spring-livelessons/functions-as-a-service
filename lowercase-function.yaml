@@ -1,0 +1,9 @@
+apiVersion: projectriff.io/v1
+kind: Function
+metadata:
+  name: lowercase
+spec:
+  protocol: grpc
+  input: lowercase
+  container:
+    image: jlong/lowercase:0.0.1
