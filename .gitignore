@@ -1,6 +1,8 @@
 target/
+*iml
 pom.xml.tag
 pom.xml.releaseBackup
+.idea
 pom.xml.versionsBackup
 pom.xml.next
 release.properties
@@ -10,3 +12,7 @@ buildNumber.properties
 
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
+
+*-function.yaml
+*-topics.yaml
+Dockerfile
