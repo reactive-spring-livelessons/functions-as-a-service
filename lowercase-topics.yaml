@@ -1,6 +1,0 @@
-apiVersion : projectriff.io/v1
-kind: Topic
-metadata:	
-  name: lowercase
-spec:
-  partitions: 1

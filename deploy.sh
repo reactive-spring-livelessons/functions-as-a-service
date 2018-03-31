@@ -1,11 +1,14 @@
-fn=lowercase
 
-riff delete --all
+fn=uppercase
 
-rm -f ${fn}-topics.yaml
-rm -f ${fn}-function.yaml
-rm -f Dockerfile
+riff delete --all --force
 
-mvn clean package
-riff init java --name $fn -a  ./target/riff-0.0.1-SNAPSHOT.jar --handler "lowercase&main=com.example.riff.RiffApplication"
-riff update
+for i in {${fn}-topics.yaml,${fn}-function.yaml,Dockerfile} ; do
+ rm -rf $i
+done
+
+mvn -f ./pom.xml clean package
+
+riff create java -a  target/riff-0.0.1-SNAPSHOT.jar --force --name $fn --input $fn --handler "$fn&main=com.example.riff.RiffApplication"
+
+riff publish --content-type application/json -i $fn -d'{"value":"hi riff"}'  -r

@@ -14,29 +14,32 @@ import java.util.function.Function;
 public class RiffApplication {
 
 		@Bean
-		Function<Flux<Foo>, Flux<Bar>> lowercase() {
-				return incoming -> incoming.log().map(value -> new Bar(value.lowercase()));
+		Function<Flux<Input>, Flux<Output>> uppercase() {
+				return incoming -> incoming.log().map(value -> new Output(value.uppercase()));
 		}
 
 		public static void main(String[] args) {
 				SpringApplication.run(RiffApplication.class, args);
+				System.out.println("Starting " + RiffApplication.class.getName());
 		}
 }
+
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-class Foo {
+class Input {
+
 		private String value;
 
-		String lowercase() {
-				return value.toLowerCase();
+		String uppercase() {
+				return value.toUpperCase();
 		}
 }
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-class Bar {
+class Output {
 		private String value;
 }
